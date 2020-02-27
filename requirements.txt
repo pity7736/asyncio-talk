@@ -1,0 +1,2 @@
+Flask==1.1.1
+starlette==0.13.2
