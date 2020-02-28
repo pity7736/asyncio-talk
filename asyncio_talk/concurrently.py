@@ -5,8 +5,7 @@ import uvloop
 
 import httpx
 
-from common.request_functions import async_request, async_request2, sync_request
-from common.sites import sites
+from common import sites, async_request, async_request2, sync_request
 
 
 async def async_main():

@@ -1,18 +1,18 @@
-import time
+import asyncio
 
 
-class Iterator:
+class AsyncIterator:
 
     def __init__(self, to):
         self._i = 0
         self._to = to
 
-    def __iter__(self):
+    def __aiter__(self):
         return self
 
-    def __next__(self):
+    async def __anext__(self):
         if self._i < self._to:
             self._i += 1
-            time.sleep(0.1)
+            await asyncio.sleep(0.1)
             return self._i
-        raise StopIteration
+        raise StopAsyncIteration
