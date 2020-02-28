@@ -1,6 +1,12 @@
 import asyncio
 
-from asyncio_talk.coroutine import coro
+
+async def coro(delay):
+    print(f'coro sleeping {delay} seconds!')
+    sleep = asyncio.sleep(delay)
+    print('sleep', sleep)
+    await sleep
+    print('coro finish!')
 
 
 async def main():

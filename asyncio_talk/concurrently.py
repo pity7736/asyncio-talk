@@ -1,49 +1,12 @@
 import asyncio
 import time
 
-import requests
 import uvloop
 
 import httpx
 
-
-sites = [
-        'https://www.yahoo.com/',
-        'http://www.cnn.com',
-        'http://www.python.org',
-        'http://www.jython.org',
-        'http://www.pypy.org',
-        'http://www.perl.org',
-        'http://www.cisco.com',
-        'http://www.facebook.com',
-        'http://www.twitter.com',
-        'http://www.macrumors.com/',
-        'http://arstechnica.com/',
-        'http://www.reuters.com/',
-        'http://abcnews.go.com/',
-        'http://www.cnbc.com/',
-        'https://www.google.com/'
-    ]
-
-
-async def async_request(url, loop):
-    init = loop.time()
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
-
-    print(f'site: {url}. response: {response}. time elapsed: {loop.time() - init}')
-
-
-async def async_request2(client, url, loop):
-    init = loop.time()
-    response = await client.get(url)
-    print(f'site: {url}. response: {response}. time elapsed: {loop.time() - init}')
-
-
-def sync_request(url):
-    init = time.monotonic()
-    response = requests.get(url)
-    print(f'site: {url}. response: {response}. time elapsed: {time.monotonic() - init}')
+from common.request_functions import async_request, async_request2, sync_request
+from common.sites import sites
 
 
 async def async_main():
@@ -70,8 +33,7 @@ async def async_main2():
 
 def sync_main():
     init = time.monotonic()
-    for url in sites:
-        sync_request(url)
+    list(map(sync_request, sites))
     print(f'total time elapsed: {time.monotonic() - init}')
 
 
