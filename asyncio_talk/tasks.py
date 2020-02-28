@@ -1,5 +1,6 @@
 import asyncio
-from .coro import coro
+
+from asyncio_talk.coroutine import coro
 
 
 async def main():
